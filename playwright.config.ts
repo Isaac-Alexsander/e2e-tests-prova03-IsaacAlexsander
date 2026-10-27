@@ -3,7 +3,7 @@ import { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: 'src/scenarios',
   timeout: 120000,
-  retries: 0,
+  retries: process.env.CI ? 1 : 0,
   use: {
     trace: 'on',
     locale: 'pt-BR',
@@ -17,6 +17,7 @@ const config: PlaywrightTestConfig = {
     timeout: 30000
   },
   reporter: [
+    ['list'],
     [
       'html',
       {
